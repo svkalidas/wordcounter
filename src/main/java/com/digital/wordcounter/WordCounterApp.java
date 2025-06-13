@@ -1,6 +1,5 @@
 package com.digital.wordcounter;
 
-import com.digital.wordcounter.constants.ApplicationConstants;
 import com.digital.wordcounter.exceptions.InvalidInputException;
 import com.digital.wordcounter.exceptions.ServiceCreationException;
 import com.digital.wordcounter.service.WordCountService;

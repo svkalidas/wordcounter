@@ -16,7 +16,7 @@ class StopWordsUtilTest {
     }
 
     @Test
-    void shouldLoadStopWordsFromFile() throws ApplicationConfigurationException {
+    void shouldLoadStopWordsFromFile() {
         StopWordsUtil.loadStopWords();
 
         assertTrue(StopWordsUtil.isStopWord("the"), "Word 'the' should be a stopword");
@@ -24,7 +24,7 @@ class StopWordsUtilTest {
     }
 
     @Test
-    void shouldHandleMissingStopWordsFileGracefully() throws ApplicationConfigurationException {
+    void shouldHandleMissingStopWordsFileGracefully() {
         System.setProperty("config.properties", "non_existent_file.txt");
         StopWordsUtil.loadStopWords();
 

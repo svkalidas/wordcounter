@@ -27,7 +27,7 @@ public class ApplicationConfigurationException extends Exception {
 
     /**
      * Constructor with a custom error message and a cause.
-     * @param cause
+     * @param cause the cause of the exception
      */
     public ApplicationConfigurationException(Throwable cause) {
 

@@ -5,12 +5,19 @@ It will then output the number of words found in the text. Words are stretches o
 
 ## Features
 - **Word Counting**: Counts words in a user-provided text input.
+- **StopWords**: Provide the provision to configure pre-defined words, which will be excluded from counting.
+- **Configuration**: The features can be configured via the cofig.properties file
 - **Input Validation & Exception handling**: Ensure that the input is not null or empty and handle unexpected error gracefully.
 - **Logging**: Log applicaton events and errors.
 
 ## Sample Usage:
+1) Without stopwords:
 - Enter Text: Mary had a little lamb
 - Number of workds: 5
+2) With stopwords:
+  - stopwords : the, on, a, off
+  - Enter Text: Mary had a little lamb
+  - Number of workds: 4
 
 ## Technologies used
 

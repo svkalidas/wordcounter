@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
+import static com.digital.wordcounter.constants.ApplicationConstants.PROMPT_MESSAGE;
+import static com.digital.wordcounter.constants.ApplicationConstants.PROMPT_RESPONSE;
 import static com.digital.wordcounter.service.factory.WordCountServiceFactory.WordCountServiceType.BASIC;
 
 public class WordCounterApp {
@@ -19,13 +21,13 @@ public class WordCounterApp {
 
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println(ApplicationConstants.PROMPT_MESSAGE);
+            System.out.println(PROMPT_MESSAGE);
             String inputText = scanner.nextLine();
 
             // Specify the type of service to use
             WordCountService wordCountService = WordCountServiceFactory.createWordCountService(BASIC);
             long wordCount = wordCountService.countWords(inputText);
-            System.out.println( ApplicationConstants.PROMPT_RESPONSE + wordCount);
+            System.out.println( PROMPT_RESPONSE + wordCount);
             LOG.info("Processed input successfully. Word count: {}", wordCount);
         } catch (InvalidInputException | ServiceCreationException e){
             System.err.println(e.getMessage());

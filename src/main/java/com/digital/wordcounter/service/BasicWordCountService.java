@@ -2,6 +2,7 @@ package com.digital.wordcounter.service;
 
 import com.digital.wordcounter.constants.ApplicationConstants;
 import com.digital.wordcounter.exceptions.InvalidInputException;
+import com.digital.wordcounter.util.StopWordsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,8 @@ public class BasicWordCountService implements WordCountService{
     public long countWords(String text) throws InvalidInputException {
         validateInput(text);
         long wordCount = Arrays.stream(text.split(ApplicationConstants.WORD_SPLIT_REGEX))
-                .filter(word -> word.matches(ApplicationConstants.WORK_MATCH_REGEX)).count();
+                .filter(word -> word.matches(ApplicationConstants.WORK_MATCH_REGEX) && !StopWordsUtil.isStopWord(word))
+                .count();
         logger.debug("Counted {} words in the text.", wordCount);
         return wordCount;
     }

@@ -1,6 +1,8 @@
 package com.digital.wordcounter;
 
 import com.digital.wordcounter.constants.ApplicationConstants;
+import com.digital.wordcounter.exceptions.InvalidInputException;
+import com.digital.wordcounter.exceptions.ServiceCreationException;
 import com.digital.wordcounter.service.WordCountService;
 import com.digital.wordcounter.service.factory.WordCountServiceFactory;
 import com.digital.wordcounter.util.MessageUtil;
@@ -25,6 +27,9 @@ public class WordCounterApp {
             long wordCount = wordCountService.countWords(inputText);
             System.out.println( ApplicationConstants.PROMPT_RESPONSE + wordCount);
             LOG.info("Processed input successfully. Word count: {}", wordCount);
+        } catch (InvalidInputException | ServiceCreationException e){
+            System.err.println(e.getMessage());
+            LOG.error(e.getMessage(), e);
         } catch (Exception e) {
             System.err.println(MessageUtil.getMessage("error.unexpected.error", e.getMessage()));
             LOG.error(MessageUtil.getMessage("error.unexpected.error", e.getMessage()), e);

@@ -65,6 +65,14 @@ public class StopWordsUtil {
         return filePath != null && !filePath.isBlank() && filePathPattern.matcher(filePath).matches();
     }
 
+    /**
+     * Gets a BufferedReader for the specified file path.
+     * First checks if the file exists in the provided directory, then falls back to the resource folder.
+     *
+     * @param filePath the path to the stopwords file
+     * @return a BufferedReader for the stopwords file
+     * @throws IOException if an I/O error occurs
+     */
     private static BufferedReader getFileReader(String filePath) throws IOException {
 
         Path path = Paths.get(filePath);
@@ -77,7 +85,7 @@ public class StopWordsUtil {
         InputStreamReader resourceStream = Optional.ofNullable(
                         StopWordsUtil.class.getClassLoader().getResourceAsStream(filePath))
                 .map(InputStreamReader::new)
-                .orElseThrow(() -> new IOException("File not found in resources: " + filePath));
+                .orElseThrow(() -> new IOException("StopWords file not found in the location: " + filePath));
         return new BufferedReader(resourceStream);
     }
 

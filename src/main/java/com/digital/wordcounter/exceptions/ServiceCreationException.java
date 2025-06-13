@@ -1,5 +1,7 @@
 package com.digital.wordcounter.exceptions;
 
+import com.digital.wordcounter.util.MessageUtil;
+
 /**
  * Custom exception to handle service creation errors in the Word Counter application.
  */
@@ -17,7 +19,7 @@ public class ServiceCreationException extends Exception {
      * @param message the error message
      */
     public ServiceCreationException(String message) {
-        super(message);
+        super(MessageUtil.getMessage("error.invalid.service.type", message));
     }
 
     /**

@@ -43,7 +43,7 @@ public class WordCountServiceFactory {
         WordCountService service = serviceRegistry.get(type);
         if (service == null) {
             LOG.error("Invalid service type: {}", type);
-            throw new ServiceCreationException("Invalid service type: " + type);
+            throw new ServiceCreationException(type.toString());
         }
         return service;
     }

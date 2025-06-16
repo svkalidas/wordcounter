@@ -29,7 +29,7 @@ public final class ApplicationConstants {
     public static final String DEFAULT_STOPWORDS_FILE_NAME = "stopwords.txt";
 
     /** Regular expression to validate file paths. */
-    public static final String FILE_PATH_REGEX =  "^([a-zA-Z]:[\\\\/])?((?:[a-zA-Z0-9_\\-]+[\\\\/])*)([a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9]+)$";
+    public static final String FILE_PATH_REGEX =  "^(?:[a-zA-Z]:[\\\\/])?(?:[\\\\/]?[^\\\\/:*?\"<>|]+)+[\\\\/]?[^\\\\/:*?\"<>|]+\\.[a-zA-Z0-9]+$";
 
     // Add more constants as needed
 }

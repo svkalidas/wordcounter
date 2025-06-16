@@ -11,8 +11,10 @@ public class DataSourceUtilTest {
 
     @Test
     void shouldReturnTrueForValidFilePath() {
-        String validFilePath = "C:/valid/path/to/file.txt";
-        assertTrue(DataSourceUtil.isValidFilePath(validFilePath), "Valid file path should return true");
+        String validFilePath1 = "C:/valid/path/to/file.txt";
+        String validFilePath2 = "/path/to/file.txt";
+        assertTrue(DataSourceUtil.isValidFilePath(validFilePath1), "Valid file path should return true");
+        assertTrue(DataSourceUtil.isValidFilePath(validFilePath2), "Valid file path should return true");
     }
 
     @Test

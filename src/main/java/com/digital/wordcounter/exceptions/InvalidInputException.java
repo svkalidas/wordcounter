@@ -2,10 +2,12 @@ package com.digital.wordcounter.exceptions;
 
 import com.digital.wordcounter.util.MessageUtil;
 
+import java.io.IOException;
+
 /**
  * Custom exception to handle invalid input scenarios in the Word Counter application.
  */
-public class InvalidInputException extends Exception{
+public class InvalidInputException extends IOException {
 
     /**
      * Default constructor for InvalidInputException.

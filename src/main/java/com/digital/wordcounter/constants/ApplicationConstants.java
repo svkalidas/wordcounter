@@ -13,11 +13,11 @@ public final class ApplicationConstants {
     /** Response message for word count. */
     public static final String PROMPT_RESPONSE = "Number of words: ";
 
-    /** Regular expression to split words by whitespace and punctuation. */
-    public  static final String WORD_SPLIT_REGEX ="[\\s\\p{Punct}]+";
+    /** Regular expression to split words by whitespace. */
+    public  static final String WORD_SPLIT_REGEX = "\\s+";
 
-    /** Regular expression to match valid words (alphabetic characters only). */
-    public static final String WORK_MATCH_REGEX = "[a-zA-Z]+";
+    /** Regular expression to match valid words (alphanumeric characters only). */
+    public static final String WORK_MATCH_REGEX = ".*[a-zA-Z]+.*";
 
     /** Default config file name. */
     public static final String CONFIG_FILE = "config.properties";

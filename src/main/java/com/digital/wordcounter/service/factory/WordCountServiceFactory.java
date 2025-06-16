@@ -16,6 +16,17 @@ public class WordCountServiceFactory {
 
     private static final Logger LOG = LoggerFactory.getLogger(WordCountServiceFactory.class);
 
+    public static final WordCountServiceFactory INSTANCE = new WordCountServiceFactory();
+
+    private WordCountServiceFactory() {
+        // Private constructor to prevent instantiation
+        initServiceRegistry();
+    }
+
+    /**
+     * Enum representing the types of WordCountService available.
+     * Currently, only a basic implementation is provided.
+     */
     public enum WordCountServiceType {
         BASIC;
 
@@ -25,12 +36,18 @@ public class WordCountServiceFactory {
         }
     }
 
-    private static final Map<WordCountServiceType, WordCountService> serviceRegistry = new HashMap<>();
+    /** A registry to hold the available WordCountService implementations. */
+    private final Map<WordCountServiceType, WordCountService> serviceRegistry = new HashMap<>();
 
-    static {
-        // Register services
+    /**
+     * Initializes the service registry with available WordCountService implementations.
+     * This method is called once when the class is loaded.
+     */
+    protected void initServiceRegistry() {
         serviceRegistry.put(WordCountServiceType.BASIC, new BasicWordCountService());
+        LOG.info("WordCountServiceFactory initialized with available services: {}", serviceRegistry.keySet());
     }
+
 
     /**
      * Creates a WordCountService instance based on the specified type.
@@ -39,12 +56,21 @@ public class WordCountServiceFactory {
      * @return the WordCountService instance
      * @throws ServiceCreationException if the service type is invalid
      */
-    public static WordCountService createWordCountService(WordCountServiceType type) throws ServiceCreationException {
+    public  WordCountService createWordCountService(WordCountServiceType type) throws ServiceCreationException {
         WordCountService service = serviceRegistry.get(type);
         if (service == null) {
             LOG.error("Invalid service type: {}", type);
             throw new ServiceCreationException(type.toString());
         }
         return service;
+    }
+
+    /**
+     * Returns a read-only view of the registered WordCountService implementations.
+     *
+     * @return a map of WordCountServiceType to WordCountService
+     */
+    public Map<WordCountServiceType, WordCountService> getRegisteredServices() {
+        return Map.copyOf(serviceRegistry);
     }
 }

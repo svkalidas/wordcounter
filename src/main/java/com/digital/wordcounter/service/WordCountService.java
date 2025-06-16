@@ -10,8 +10,9 @@ public interface WordCountService {
 
     /**
      * Count the total number of words in a given sentence.
-     * @param inputText the text to count words in.
+     * @param input the text to count words in.
+     * @param isFileInput flag to indicate if the input is from a file or not.
      * @return number of words in the give text.
      */
-    long countWords(String inputText) throws InvalidInputException;
+    long countWords(String input, boolean isFileInput) throws InvalidInputException;
 }

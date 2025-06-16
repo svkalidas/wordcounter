@@ -14,26 +14,39 @@ import static com.digital.wordcounter.constants.ApplicationConstants.PROMPT_MESS
 import static com.digital.wordcounter.constants.ApplicationConstants.PROMPT_RESPONSE;
 import static com.digital.wordcounter.service.factory.WordCountServiceFactory.WordCountServiceType.BASIC;
 
+/**
+ * Main application class for the Word Counter application.
+ * It reads input from the user or a file, counts the words using the specified service,
+ * and prints the word count to the console.
+ */
 public class WordCounterApp {
 
     private static final Logger LOG = LoggerFactory.getLogger(WordCounterApp.class);
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println(PROMPT_MESSAGE);
-            String inputText = scanner.nextLine();
 
+        try {
+            String input = null;
+            boolean isFileInput = args.length > 0;
+            if(isFileInput){
+                input = args[0];
+            }else {
+                try (Scanner scanner = new Scanner(System.in)) {
+                    System.out.println(PROMPT_MESSAGE);
+                    input = scanner.nextLine();
+                }
+            }
             // Specify the type of service to use
-            WordCountService wordCountService = WordCountServiceFactory.createWordCountService(BASIC);
-            long wordCount = wordCountService.countWords(inputText);
-            System.out.println( PROMPT_RESPONSE + wordCount);
+            WordCountService wordCountService = WordCountServiceFactory.INSTANCE.createWordCountService(BASIC);
+            long wordCount = wordCountService.countWords(input, isFileInput);
+            System.out.println(PROMPT_RESPONSE + wordCount);
             LOG.info("Processed input successfully. Word count: {}", wordCount);
-        } catch (InvalidInputException | ServiceCreationException e){
-            System.err.println(e.getMessage());
+        } catch (InvalidInputException | ServiceCreationException e) {
             LOG.error(e.getMessage(), e);
+            System.err.println(e.getMessage());
         } catch (Exception e) {
-            System.err.println(MessageUtil.getMessage("error.unexpected.error", e.getMessage()));
             LOG.error(MessageUtil.getMessage("error.unexpected.error", e.getMessage()), e);
+            System.err.println(MessageUtil.getMessage("error.unexpected.error", e.getMessage()));
         }
     }
 }

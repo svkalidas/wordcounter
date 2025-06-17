@@ -4,7 +4,7 @@ An application to count the number of words in a text. The app will ask the user
 It will then output the number of words found in the text. Words are stretches of letters (a-z,A-Z).
 
 ## Features
-- **Word Counting**: Counts words in a user-provided text input.
+- **Word Counting**: Counts words from user-provided text input as well as from an input file.
 - **StopWords**: Provide the provision to configure pre-defined words, which will be excluded from counting.
 - **Configuration**: The features can be configured via the cofig.properties file
 - **Input Validation & Exception handling**: Ensure that the input is not null or empty and handle unexpected error gracefully.
@@ -12,18 +12,23 @@ It will then output the number of words found in the text. Words are stretches o
 
 ## Sample Usage:
 1) Without stopwords:
-- Enter Text: Mary had a little lamb
-- Number of workds: 5
+   - Enter Text: Mary had a little lamb
+   - Number of workds: 5
 2) With stopwords:
-  - stopwords : the, on, a, off
+  - stopwords: the, on, a, off
   - Enter Text: Mary had a little lamb
   - Number of workds: 4
+3) With an input file :
+   - wordcount file/path/mytext.txt
+   - Number of words: 4
 
 ## Technologies used
 
 - **Java**: The application is built using Java 21.
+- **Maven**: Used for building the application.
 - **Junit**: Used for unit testing.
 - **SLF4J**: Used for logging.
+- **Docker**: User for containerization
 
 ## Prerequisites
 
@@ -43,7 +48,17 @@ It will then output the number of words found in the text. Words are stretches o
 
 3. Running the application:
    ```bash
-   java -jar target/word-counter-app-1.0-SNAPSHOT.jar
+   java -jar target/wordcount.jar
+   
+   OR
+   
+   java -jar target/wordcount.jar path/mytext.txt
+   
+   OR
+   
+   docker build -t wordcount -f cicd/Dockerfile .
+   docker run -it wordcount
+   # wordcount 
 
 4. Testing
    ```bash
